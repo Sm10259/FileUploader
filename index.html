@@ -8,8 +8,8 @@
 	<link rel="icon" href="http://brightrockcompany.com/favicon.png" sizes="32x32">
 	
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"rel="stylesheet">
-	<link rel="stylesheet" href="http://10.254.17.169:8082/media/stylesheet.css">
-	<link rel="stylesheet" href="http://10.254.17.169:8082/media/stylesheet2.desktop.css">
+	<link rel="stylesheet" href="css/stylesheet.css">
+	<link rel="stylesheet" href="css/stylesheet2.desktop.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<link href="css/styles.css" rel="stylesheet">
@@ -31,10 +31,10 @@
 						<a class="active" href="javascript:void();">Cloud Docs Live v1.0</a>
 					</li>
 					<li>
-						<a href="http://10.254.17.169:8082/chat/">mdc Chat</a>
+						<a href="javascript:void();">mdc Chat</a>
 					</li>
 					<li>
-						<a href="http://10.254.17.169:8084">vBank</a>
+						<a href="javascript:void();">vBank</a>
 					</li>
 				</ul>
 			</div>
@@ -132,20 +132,12 @@
 	socket.on('newUser', function(username) {
 		$('alerts').html('');
 		$('alerts').prepend(
-			'<p><audio class="background" autoplay><source src="http://10.254.17.169:8082/media/audio/new-user.mp3" type="audio/wav"></audio></p>'
+			'<p><audio class="background" autoplay><source src="media/new-user.mp3" type="audio/wav"></audio></p>'
 		);
 		$('#snackbar').html(username + " has joined");
 		showAlert();
 	})
-		/*// When the form is sent, the message is sent and displayed on the page
-			$('#upload-input').on('change', function(){
-				var file = $('#file').val();
-				socket.emit('newFile', file); // Sends the message to the others
-				insertFile(username, file.name); // Also displays the message on our page
-				$('#file').val('').focus(); // Empties the chat form and puts the focus back on it
-				$('#progress').show();
-				return true;
-			})*/
+	
 	// When a message is received it's inserted in the page
 	socket.on('newFile', function(data) {
 		$('alerts').html('');
@@ -170,7 +162,7 @@
 	
 	// Adds a message to the page
 	function insertFile(username, name) {
-		$('#fileHistoryWrapper').prepend('<p><a href="http://10.254.17.169:8081/uploads/' + name + '"> ' + name + '</a></p>');
+		$('#fileHistoryWrapper').prepend('<p><a href="uploads/' + name + '"> ' + name + '</a></p>');
 	}
 	
 	// File Upload Scripts //
