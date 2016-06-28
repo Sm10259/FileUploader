@@ -1,3 +1,7 @@
+# File Uploader [![Build Status](https://travis-ci.org/twitter/twemoji.svg?branch=gh-pages)](http://joshmyerson.com/mdc/fileuploader)
+
+A simple live file uploader with Socket.io
+
 ## License
 Copyright 2016 Myerson Development Company and other contributors
 
