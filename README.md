@@ -1,4 +1,4 @@
-# File Uploader ![alt tag](https://travis-ci.org/twitter/twemoji.svg?branch=gh-pages)
+# File Uploader
 
 A simple live file uploader with Socket.io
 
