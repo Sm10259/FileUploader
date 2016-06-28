@@ -1,4 +1,4 @@
-# File Uploader [![Build Status](https://travis-ci.org/twitter/twemoji.svg?branch=gh-pages)](http://joshmyerson.com/mdc/fileuploader)
+# File Uploader [![Build Status](https://travis-ci.org/twitter/twemoji.svg?branch=gh-pages)](https://travis-ci.org/twitter/twemoji)
 
 A simple live file uploader with Socket.io
 
