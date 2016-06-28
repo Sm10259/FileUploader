@@ -153,6 +153,14 @@
 		}
 	})
 	
+	// Show all files
+	socket.on('getFileList', function(fileList) {
+		$('#fileHistoryWrapper').html('');
+		for (var u = 0; u < fileList.length; u++) {
+			$('#fileHistoryWrapper').prepend('<p><a href="uploads/' + fileList[u][0] + '"> ' + fileList[u][0] + '</a></p>');
+		}
+	})
+	
 	// Handle disconnects
 	socket.on('left', function(username) {
 		$('alerts').html('');

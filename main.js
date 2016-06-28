@@ -9,7 +9,8 @@ var express = require('express'),
 
 app.use(express.static(__dirname));
 
-var userList = [];
+var userList = []; // Username = 0 | socket.id = 1
+var fileList = []; // File name = 0
 
 io.sockets.on('connection', function (socket, username) {
 
@@ -19,22 +20,29 @@ io.sockets.on('connection', function (socket, username) {
         socket.username = username; // Store username
 		
         socket.broadcast.emit('newUser', username); // Tell client new user
-		
 		console.log(username + ' has joined'); // Tell console new user
 		fs.appendFile('log.txt', username + ' has joined\r\n', function (err) {}); // Log user join
-		userList.push([username, socket.id]); // Update array
-		io.sockets.emit('getUserList', userList);
+		
+		userList.push([username, socket.id]); // Update user list array
+		
+		io.sockets.emit('getUserList', userList); // Get active users
+		io.sockets.emit('getFileList', fileList); // Get all files
+		
 		console.log(username + " joined: " + userList);
     });
 
     // When a message is received, the client’s username is retrieved and sent to the other people
     socket.on('newFile', function (name) {
         name = ent.encode(name); // Strip HTML characters
+		
         io.sockets.emit('newFile', {username: socket.username, name: name}); // Tell client new message
 		console.log(socket.username + ': ' + name); // Tell console new message
+		
+		fileList.push([name]); // Update file list array
 		fs.appendFile('log.txt', socket.username + ': ' + name + '\r\n', function (err) {}); // Log the message
     }); 
 	
+	// Handle disconnects
 	socket.on('disconnect', function () {
 		var location, username;
 		for (var u = 0; u < userList.length; u++) { // Get username
