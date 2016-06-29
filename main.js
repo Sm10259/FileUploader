@@ -30,13 +30,6 @@ io.sockets.on('connection', function (socket, username) {
 		
 		console.log(username + " joined: " + userList);
     });
-	
-	// When admin connects
-	socket.on('adminJoin', function() {
-		io.sockets.emit('getUserList', userList); // Get active users
-		//io.sockets.emit('getFileList', fileList); // Get all files
-		io.clients[sessionID].send('getFileList', fileList)
-    });
 
     // When a message is received, the client’s username is retrieved and sent to the other people
     socket.on('newFile', function (name) {

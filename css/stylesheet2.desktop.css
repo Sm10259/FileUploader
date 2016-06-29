@@ -43,8 +43,8 @@
 
 /* File List */
 .fileList {
-	text-aligh: left;
-	
+	text-align: left;
+	align-items: center;
 }
 
 /* Side Nav */
