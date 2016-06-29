@@ -21,7 +21,7 @@ io.sockets.on('connection', function (socket, username) {
 		
         socket.broadcast.emit('newUser', username); // Tell client new user
 		console.log(username + ' has joined'); // Tell console new user
-		fs.appendFile('log.txt', username + ' has joined\r\n', function (err) {}); // Log user join
+		//fs.appendFile('log.txt', username + ' has joined\r\n', function (err) {}); // Log user join
 		
 		userList.push([username, socket.id]); // Update user list array
 		
@@ -39,7 +39,7 @@ io.sockets.on('connection', function (socket, username) {
 		console.log(socket.username + ': ' + name); // Tell console new message
 		
 		fileList.push([name]); // Update file list array
-		fs.appendFile('log.txt', socket.username + ': ' + name + '\r\n', function (err) {}); // Log the message
+		//fs.appendFile('log.txt', socket.username + ': ' + name + '\r\n', function (err) {}); // Log the message
     }); 
 	
 	// Handle disconnects
