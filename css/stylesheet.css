@@ -65,6 +65,7 @@ author {
 	text-align: left;
 }
 
+/* Element Container */
 .base.standardContentContainer {margin-top: 2px;}
 .standardContentContainer {
 	-webkit-border-radius: 9px;
@@ -81,6 +82,7 @@ author {
 }
 .base.standardContentContainer {margin: 10px 5px;}
 
+/* Nav Bar */
 .base.standardNavContainer {margin-top: 0px;}
 .standardNavContainer {
 	-moz-box-shadow: 0 0 4px rgba(0,0,0,0.2);
