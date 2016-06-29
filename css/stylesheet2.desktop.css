@@ -41,6 +41,12 @@
     to {bottom: 0; opacity: 0;}
 }
 
+/* File List */
+.fileList {
+	text-aligh: left;
+	
+}
+
 /* Side Nav */
 .sidenav {
     height: 100%;
