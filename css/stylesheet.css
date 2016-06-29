@@ -68,9 +68,9 @@ author {
 /* Element Container */
 .base.standardContentContainer {margin-top: 2px;}
 .standardContentContainer {
-	-webkit-border-radius: 9px;
-	-moz-border-radius: 9px;
-	border-radius: 9px;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
 	-moz-box-shadow: 0 0 4px rgba(0,0,0,0.2);
 	-webkit-box-shadow: 0 0 4px rgba(0,0,0,0.2);
 	box-shadow: 0 0 4px rgba(0,0,0,0.2);

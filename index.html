@@ -154,8 +154,18 @@
 	// When a message is received it's inserted in the page
 	socket.on('newFile', function(data) {
 		$('alerts').html('');
-		insertFile(data.username, data.name);
+		insertFile(data.luid, data.name);
+		$('#snackbar').html(data.username + " uploaded: " + data.name);
+		showAlert();
 	})
+	
+	// Adds a message to the page
+	function insertFile(luid, name) {
+		$('#fileHistoryWrapper').prepend('<p class="fileList">'
+			+ '<a id="deleteFile" onclick="deleteFile(\'' + luid + '\')"><i class="material-icons">close</i></a> '
+			+ '<a "target="_blank" href="uploads/' + name + '"> ' + name + '</a></p>');
+	}
+	
 	// Show active users
 	socket.on('getUserList', function(userList) {
 		$('#activeUserWrapper').html('');
@@ -169,10 +179,20 @@
 	// Show all files
 	socket.on('getFileList', function(fileList) {
 		$('#fileHistoryWrapper').html('');
+		var test = "Hello";
 		for (var u = 0; u < fileList.length; u++) {
-			$('#fileHistoryWrapper').prepend('<p class="fileList"><i class="material-icons">close</i> <a href="uploads/' + fileList[u][0] + '"> ' + fileList[u][0] + '</a></p>');
+			$('#fileHistoryWrapper').prepend('<p class="fileList">'
+				+ '<a id="deleteFile" onclick="deleteFile(\'' + fileList[u][0] + '\')"><i class="material-icons">close</i></a> '
+				+ '<a "target="_blank" href="uploads/' + fileList[u][2] + '"> ' + fileList[u][2] + '</a></p>');
 		}
 	})
+	
+	// Delete a file
+	function deleteFile(luid) {
+		alert(luid);
+		socket.emit('requestDelete', luid);
+		return false;
+	}
 	
 	// Handle disconnects
 	socket.on('left', function(username) {
@@ -180,11 +200,6 @@
 		$('#snackbar').html(username + " has left");
 		showAlert();
 	})
-	
-	// Adds a message to the page
-	function insertFile(username, name) {
-		$('#fileHistoryWrapper').prepend('<p class="fileList"><i class="material-icons">close</i> <a href="uploads/' + name + '"> ' + name + '</a></p>');
-	}
 	
 	// File Upload Scripts //
 	

@@ -10,7 +10,7 @@ var express = require('express'),
 app.use(express.static(__dirname));
 
 var userList = []; // Username = 0 | socket.id = 1
-var fileList = []; // File name = 0
+var fileList = []; // LUID = 0 | socket.id = 1 | File name = 2
 
 io.sockets.on('connection', function (socket, username) {
 
@@ -28,19 +28,59 @@ io.sockets.on('connection', function (socket, username) {
 		io.sockets.emit('getUserList', userList); // Get active users
 		io.sockets.emit('getFileList', fileList); // Get all files
 		
-		console.log(username + " joined: " + userList);
+		console.log(username + " joined");
     });
 
-    // When a message is received, the client’s username is retrieved and sent to the other people
+    // When a file is received, the file's name is retrieved and sent to the other people
     socket.on('newFile', function (name) {
         name = ent.encode(name); // Strip HTML characters
 		
-        io.sockets.emit('newFile', {username: socket.username, name: name}); // Tell client new message
-		console.log(socket.username + ': ' + name); // Tell console new message
+		// Generate LUID (Local Unique Identifier)
+		var unique = false, luid;
 		
-		fileList.push([name]); // Update file list array
-		//fs.appendFile('log.txt', socket.username + ': ' + name + '\r\n', function (err) {}); // Log the message
+		// If array is not empty execute
+		if (fileList.length != 0) {
+		
+			// While the unique number is not unique run the loop
+			while(!unique){
+				luid = Math.ceil(Math.random() * 100);
+				
+				// Run through all LUIDs to see if there is a duplicate
+				for (var w = 0; w < fileList.length; w++) {
+					// If the LUID generated is not found in the array set unique to true
+					if(fileList[w][0] != luid) { unique = true; }
+					// If the LUID generated is found in the array set unique to false
+					else { unique = false; }
+				}
+			}
+		}
+		else { // If array is empty set LUID = 1
+			luid = 1;
+		}
+		
+        io.sockets.emit('newFile', {luid: luid, username: socket.username, name: name}); // Tell client new file
+		console.log(socket.username + ': ' + name); // Tell console new file
+		
+		fileList.push([luid, socket.id, name]); // Update file list array
     }); 
+	
+	// When the username is received it’s stored as a session variable and informs the other people
+    socket.on('requestDelete', function(luid) {
+        luid = ent.encode(luid); // Strip HTML characters
+		//name = ent.encode(name); // Strip HTML characters
+		
+		var location;
+		
+		//console.log(name + ' has been deleted'); // Tell console new user
+		
+		for (var u = 0; u < fileList.length; u++) { // Get username
+			if (fileList[u][0] == luid) {
+				location = u;
+			}
+		}
+		userList.splice(location, 1); // Remove user from userList[]
+		io.sockets.emit('getFileList', fileList); // Get all files
+    });
 	
 	// Handle disconnects
 	socket.on('disconnect', function () {
@@ -58,7 +98,7 @@ io.sockets.on('connection', function (socket, username) {
 			//fs.appendFile('log.txt', username + ' has left\r\n', function (err) {}); // Log user leave
 			userList.splice(location, 1); // Remove user from userList[]
 			io.sockets.emit('getUserList', userList);
-			console.log(username + " left: " + userList);
+			console.log(username + " left");
 		}
 	});
 	
