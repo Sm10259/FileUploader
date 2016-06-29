@@ -55,7 +55,7 @@ io.sockets.on('connection', function (socket, username) {
 		if (username != null) {
 			socket.broadcast.emit('left', username); // Tell client user left	
 			console.log(username + ' has left'); // Tell console user left
-			fs.appendFile('log.txt', username + ' has left\r\n', function (err) {}); // Log user leave
+			//fs.appendFile('log.txt', username + ' has left\r\n', function (err) {}); // Log user leave
 			userList.splice(location, 1); // Remove user from userList[]
 			io.sockets.emit('getUserList', userList);
 			console.log(username + " left: " + userList);

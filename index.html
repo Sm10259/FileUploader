@@ -10,9 +10,11 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"rel="stylesheet">
 	<link rel="stylesheet" href="css/stylesheet.css">
 	<link rel="stylesheet" href="css/stylesheet2.desktop.css">
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<link href="css/styles.css" rel="stylesheet">
+	
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,500,400italic,700,700italic" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
 	
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -35,13 +37,18 @@
 			<div class="base standardNavContainer">
 				<ul>
 					<li>
-						<a class="active" href="javascript:void();">Cloud Docs Live v1.0</a>
+						<a onclick="openNav()" style="cursor:pointer"> 
+							<i class="material-icons">menu</i>
+						</a>
 					</li>
 					<li>
-						<a href="javascript:void();">mdc Chat</a>
+						<a class="active" href="javascript:void();">Cloud Docs Live</a>
 					</li>
 					<li>
-						<a href="javascript:void();">vBank</a>
+						<a href="javascript:void();">Chat</a>
+					</li>
+					<li>
+						<a href="javascript:void();">Bank</a>
 					</li>
 				</ul>
 			</div>
@@ -70,7 +77,6 @@
 					
 						<div id="activeUserTitle">
 							<h3 style="color: black;">Active Users</h3>
-							<span style="font-size:30px;cursor:pointer" onclick="openNav()">☰ open</span>
 						</div>
 						
 						<div id="activeUserWrapper"></div>
