@@ -5,9 +5,9 @@ function showAlert() {
 }
 
 function openNav() {
-    document.getElementById("sidenav").style.width = "250px";
+    document.getElementById("mySidenav").style.width = "250px";
 }
 
 function closeNav() {
-    document.getElementById("sidenav").style.width = "0";
+    document.getElementById("mySidenav").style.width = "0";
 }

@@ -23,6 +23,13 @@
 	</style>
 </head>
 <body>
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="#">About</a>
+		<a href="#">Services</a>
+		<a href="#">Clients</a>
+		<a href="#">Contact</a>
+	</div>
 	<section id="content">
 		<header>
 			<div class="base standardNavContainer">
@@ -48,7 +55,6 @@
 						 <form action="/" method="post" id="usernameForm" class="usernameForm">
 							<input type="text" class="form-control" name="username" id="username" autocomplete="off" placeholder="Username" maxlength="16" autofocus/>
 							<br>
-							
 							<input type="submit" class="btn btn-primary" id="submitUsername" value="Join" style="text-align: center;"/>
 						</form>
 					</div>
@@ -64,6 +70,7 @@
 					
 						<div id="activeUserTitle">
 							<h3 style="color: black;">Active Users</h3>
+							<span style="font-size:30px;cursor:pointer" onclick="openNav()">☰ open</span>
 						</div>
 						
 						<div id="activeUserWrapper"></div>
