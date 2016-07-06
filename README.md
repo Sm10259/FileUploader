@@ -1,4 +1,5 @@
 # File Uploader
+[![Build Status](https://travis-ci.org/department-of-veterans-affairs/roadrunner-react.svg?branch=master)](https://travis-ci.org/department-of-veterans-affairs/roadrunner-react)
 
 A simple live file uploader with Socket.io
 
